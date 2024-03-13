@@ -1,9 +1,16 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter } from 'next/font/google'
+import clsx from 'clsx'
+
 import "./globals.css";
+import type { Metadata } from "next";
+
 import NavBar from "./components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: "TradeHub",
@@ -16,10 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={clsx('h-full bg-gray-50 antialiased', inter.variable)}>
       <body className={inter.className}>
         <NavBar />
-        {children}</body>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {children}
+        </div>
+      </body>
     </html>
   );
 }
