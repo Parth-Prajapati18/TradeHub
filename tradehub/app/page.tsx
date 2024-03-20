@@ -20,7 +20,7 @@ function Home() {
 
       <div className="mt-1 md:mt-20 mx-auto max-w-2xl sm:text-center">
         <h2 className="text-4xl font-medium tracking-tight text-gray-900">
-          Invest in everything
+          Invest in everything 2
         </h2>
         <p className="mt-2 text-lg text-gray-600">
           Online platform to invest in stocks, derivatives, mutual funds, and more
