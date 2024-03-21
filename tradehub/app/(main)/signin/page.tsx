@@ -4,6 +4,7 @@ import Link from "next/link"
 import axios from "axios";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from "next/navigation";
 
 interface FormValues {
   email: string;
@@ -11,7 +12,8 @@ interface FormValues {
 }
 
 export default function SignIn() {
-
+  
+  const router = useRouter();
   const formik = useFormik<FormValues>({
     initialValues: {
       email: "",
@@ -25,12 +27,18 @@ export default function SignIn() {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_AUTH_SERVER || '';
         const response = await axios.post(`${apiUrl}/login`, values);
+
+        if(response.status === 200){
+          localStorage.setItem("token", response.data.token)
+          router.push('/');
+        } 
         console.log('Response: ', response);
       } catch (error) {
         console.error("An error occurred: ", error);
       }
     },
   })
+
 
   return (
     <>
